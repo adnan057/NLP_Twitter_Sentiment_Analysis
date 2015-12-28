@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" >
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link href="style.css" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js"></script>
+        <script>                   
+            function getLocation(){
+                var mapCanvas = document.getElementById('map');
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(initialize);
+                } else { 
+                mapCanvas.innerHTML = "Geolocation is not supported by this browser.";
+                }
+            }
+            
+            function initialize(position) {
+                var mapCanvas = document.getElementById('map');                
+                var mapOptions = {
+                    center: new google.maps.LatLng(position.coords.latitude,position.coords.longitude),
+                    zoom: 8,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                }
+                var map = new google.maps.Map(mapCanvas, mapOptions)
+                }
+            
+            google.maps.event.addDomListener(window, 'load',getLocation);
+            
+    </script>
+        
+        <title>Tweet Sentiment Analyzer</title>
+	</head>
+
+	<body>
+        
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{{url_for('main')}}">Home</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="{{url_for('about')}}">About</a></li>
+			<li><a href="{{url_for('contact')}}">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+        
+    <div id="header">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6">
+					<h1>The Sentiment Analyzer</h1>
+					<h2 class="subtitle">Learning sentiments from tweets!</h2>
+
+			</div>
+		</div>
+	</div>
+    <div class="container2">
+        <form class="form-search" style="text-align:center;height:100%" >	
+            <input type="text" style="width:40%; font-weight:500;"rows="2" name="sentence" class="input-lg" placeholder="Enter your topic..."/> 
+            <button type="submit" class="btn btn-primary btn-lg" style="color: #FFFFFF;margin-top:-4px;padding:8px;width:10%">Search</button>
+<!--<a href="#" id=calculate button type="submit" class="btn btn-primary btn-lg" style="color: #FFFFFF;margin: 0 auto; height:30px">Search</a>-->
+            <div id="gauge" style="width:300px; height:240px; margin: 0 auto;"></div> 
+		</form>	
+    </div>
+        
+    <div class="container3">
+        <div class="left">
+            <div id="map"></div>
+        </div>
+        <div class="right">
+             
+        </div>
+    </div>								    
+    
+        <div class="container4">
+            <div class="title">
+                <h4>Tweets!</h4>
+            </div>
+            <div class="tweets">
+                <div class="tweet">Tweeeeet!</div>
+                <div class="tweet">Tweeeeet!</div><div class="tweet">Tweeeeet!</div><div class="tweet">Tweeeeet!</div><div class="tweet">Tweeeeet!</div><div class="tweet">Tweeeeet!</div><div class="tweet">Tweeeeet!</div><div class="tweet">Tweeeeet!</div><div class="tweet">Tweeeeet!</div><div class="tweet">Tweeeeet!</div><div class="tweet">Tweeeeet!</div><div class="tweet">Tweeeeet!</div><div class="tweet">Tweeeeet!</div><div class="tweet">Tweeeeet!</div><div class="tweet">Tweeeeet!</div><div class="tweet">Tweeeeet!</div><div class="tweet">Tweeeeet!</div>
+                
+            </div>   
+        
+        </div>
+    </div>
+    
+    </body>
+</html>
